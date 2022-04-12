@@ -16,3 +16,14 @@ def create():
     db.session.add(guitar)
     db.session.commit()
     return jsonify(guitar.serialize()), 201
+
+@guitars.route('/', methods=["GET"])
+def index():
+  guitars = Guitar.query.all()
+  return jsonify([guitar.serialize() for guitar in guitars]), 200
+
+@guitars.route('/<id>', methods=["GET"])
+def show(id):
+  guitar = Guitar.query.filter_by(id=id).first()
+  guitar_data = guitar.serialize()
+  return jsonify(guitar=guitar_data), 200
