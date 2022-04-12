@@ -11,6 +11,7 @@ from api.models.rig import Rig
 
 # ============ Import Views ============
 from api.views.auth import auth
+from api.views.rigs import rigs
 
 cors = CORS()
 migrate = Migrate() 
@@ -26,6 +27,7 @@ def create_app(config):
 
   # ============ Register Blueprints ============
   app.register_blueprint(auth, url_prefix='/api/auth') 
+  app.register_blueprint(rigs, url_prefix='/api/rigs')
 
   return app
 
