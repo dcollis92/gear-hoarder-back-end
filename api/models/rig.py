@@ -9,9 +9,12 @@ class Rig(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     profile_id = db.Column(db.Integer, db.ForeignKey('profiles.id'))
 
+    #add relationships here
+
     def __repr__(self):
       return f"Rig('{self.id}', '{self.name}'"
 
+    # Will be refactored for associations
     def serialize(self):
       rig = {r.name: getattr(self, r.name) for r in self.__table__.columns}
       return rig
