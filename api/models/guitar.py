@@ -12,9 +12,11 @@ class Guitar(db.Model):
     color = db.Column(db.String(100))
     year = db.Column(db.String(4))
     description = db.Column(db.String(250))
+    is_working = db.Column(db.Boolean, default=True, nullable=False)
+    on_loan = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     profile_id = db.Column(db.Integer, db.ForeignKey('profiles.id'))
-   
+    
     def __repr__(self):
       return f"Guitar('{self.id}', '{self.make}', '{self.model}', '{self.type}'"
       
