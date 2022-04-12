@@ -61,3 +61,7 @@ def delete(id):
   db.session.delete(amp)
   db.session.commit()
   return jsonify(message="Success"), 200
+
+@amps.errorhandler(Exception)          
+def basic_error(err):
+  return jsonify(err=str(err)), 500
