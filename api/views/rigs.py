@@ -16,4 +16,30 @@ def create():
     db.session.add(rig)
     db.session.commit()
     return jsonify(rig.serialize()), 201
-    
+
+@rigs.route('/', methods=["GET"])
+def index():
+  rigs = Rig.query.all()
+  return jsonify([rig.serialize() for rig in rigs]), 200
+
+@rigs.route('/<id>', methods=["GET"])
+def show(id):
+  rig = Rig.query.filter_by(id=id).first()
+  rig_data = rig.serialize()
+  return jsonify(rig=rig_data), 200
+
+@rigs.route('/<id>', methods=["PUT"])
+@login_required
+def update(id):
+  data = request.get_json()
+  profile = read_token(request)
+  rig = Rig.query.filter_by(id=id).first()
+
+  if rig.profile_id != profile["id"]:
+    return 'Sorry, bubba', 403
+  
+  for key in data:
+    setattr(rig, key, data[key])
+  
+  db.session.commit()
+  return jsonify(rig.serialize()), 200
