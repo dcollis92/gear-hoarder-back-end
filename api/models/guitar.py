@@ -17,5 +17,5 @@ class Guitar(db.Model):
       return f"Guitar('{self.id}', '{self.make}', '{self.model}', '{self.type}'"
       
     def serialize(self):
-      guitar = {g.type: getattr(self, g.type) for g in self.__table__.columns}
+      guitar = {g.name: getattr(self, g.name) for g in self.__table__.columns}
       return guitar
