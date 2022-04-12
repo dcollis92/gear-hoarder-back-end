@@ -10,12 +10,15 @@ from api.models.profile import Profile
 from api.models.rig import Rig
 from api.models.guitar import Guitar
 from api.models.amp import Amp
+from api.models.pedal import Pedal
 
 # ============ Import Views ============
 from api.views.auth import auth
 from api.views.rigs import rigs
 from api.views.guitars import guitars
 from api.views.amps import amps
+from api.views.pedals import pedals
+
 
 cors = CORS()
 migrate = Migrate() 
@@ -34,6 +37,7 @@ def create_app(config):
   app.register_blueprint(rigs, url_prefix='/api/rigs')
   app.register_blueprint(guitars, url_prefix='/api/guitars')
   app.register_blueprint(amps, url_prefix='/api/amps')
+  app.register_blueprint(pedals, url_prefix='/api/pedals')
 
   return app
 
