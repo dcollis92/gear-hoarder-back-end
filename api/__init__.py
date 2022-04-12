@@ -11,6 +11,7 @@ from api.models.rig import Rig
 from api.models.guitar import Guitar
 from api.models.amp import Amp
 from api.models.pedal import Pedal
+from api.models.association import Association
 
 # ============ Import Views ============
 from api.views.auth import auth
