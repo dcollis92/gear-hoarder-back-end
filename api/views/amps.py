@@ -6,6 +6,7 @@ from api.models.amp import Amp
 
 amps = Blueprint('amps', 'amps')
 
+# Create Amp
 @amps.route('/', methods=["POST"])
 @login_required
 def create():
@@ -17,17 +18,20 @@ def create():
     db.session.commit()
     return jsonify(amp.serialize()), 201
 
+# Index Amps
 @amps.route('/', methods=["GET"])
 def index():
   amps = Amp.query.all()
   return jsonify([amp.serialize() for amp in amps]), 200
 
+# Show Amp
 @amps.route('/<id>', methods=["GET"])
 def show(id):
   amp = Amp.query.filter_by(id=id).first()
   amp_data = amp.serialize()
   return jsonify(amp=amp_data), 200
 
+# Update Amp
 @amps.route('/<id>', methods=["PUT"])
 @login_required
 def update(id):
@@ -44,6 +48,7 @@ def update(id):
   db.session.commit()
   return jsonify(amp.serialize()), 200
 
+# Delete Amp
 @amps.route('<id>', methods=["DELETE"])
 @login_required
 def delete(id):
