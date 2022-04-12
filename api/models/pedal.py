@@ -1,7 +1,7 @@
 from datetime import datetime
 from api.models.db import db
 
-#Add association class here
+# Add Association class here
 
 class Pedal(db.Model):
     __tablename__ = 'pedals'
