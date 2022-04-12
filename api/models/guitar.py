@@ -1,7 +1,6 @@
 from datetime import datetime
 from api.models.db import db
 
-#Add association class here
 
 class Guitar(db.Model):
     __tablename__ = 'guitars'
