@@ -43,3 +43,16 @@ def update(id):
   
   db.session.commit()
   return jsonify(rig.serialize()), 200
+
+@rigs.route('<id>', methods=["DELETE"])
+@login_required
+def delete(id):
+  profile = read_token(request)
+  rig = Rig.query.filter_by(id=id).first()
+
+  if rig.profile_id != profile["id"]:
+    return 'Get outta town!', 403
+  
+  db.session.delete(rig)
+  db.session.commit()
+  return jsonify(message="Success"), 200
