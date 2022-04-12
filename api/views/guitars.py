@@ -6,6 +6,7 @@ from api.models.guitar import Guitar
 
 guitars = Blueprint('guitars', 'guitars')
 
+# Create Guitar
 @guitars.route('/', methods=["POST"])
 @login_required
 def create():
@@ -17,17 +18,20 @@ def create():
     db.session.commit()
     return jsonify(guitar.serialize()), 201
 
+# Index Guitars 
 @guitars.route('/', methods=["GET"])
 def index():
   guitars = Guitar.query.all()
   return jsonify([guitar.serialize() for guitar in guitars]), 200
 
+# Show Guitar
 @guitars.route('/<id>', methods=["GET"])
 def show(id):
   guitar = Guitar.query.filter_by(id=id).first()
   guitar_data = guitar.serialize()
   return jsonify(guitar=guitar_data), 200
 
+# Update Guitar
 @guitars.route('/<id>', methods=["PUT"])
 @login_required
 def update(id):
@@ -44,6 +48,7 @@ def update(id):
   db.session.commit()
   return jsonify(guitar.serialize()), 200
 
+# Delete Guitar
 @guitars.route('<id>', methods=["DELETE"])
 @login_required
 def delete(id):

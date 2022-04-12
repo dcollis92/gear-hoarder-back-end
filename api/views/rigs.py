@@ -6,6 +6,7 @@ from api.models.rig import Rig
 
 rigs = Blueprint('rigs', 'rigs')
 
+# Create Rigs
 @rigs.route('/', methods=["POST"])
 @login_required
 def create():
@@ -17,17 +18,21 @@ def create():
     db.session.commit()
     return jsonify(rig.serialize()), 201
 
+# Index Rigs
 @rigs.route('/', methods=["GET"])
 def index():
   rigs = Rig.query.all()
   return jsonify([rig.serialize() for rig in rigs]), 200
 
+# Show Rig
 @rigs.route('/<id>', methods=["GET"])
 def show(id):
   rig = Rig.query.filter_by(id=id).first()
   rig_data = rig.serialize()
   return jsonify(rig=rig_data), 200
+# Add Gear association here
 
+# Update Rig
 @rigs.route('/<id>', methods=["PUT"])
 @login_required
 def update(id):
@@ -44,6 +49,7 @@ def update(id):
   db.session.commit()
   return jsonify(rig.serialize()), 200
 
+# Delete Rig
 @rigs.route('<id>', methods=["DELETE"])
 @login_required
 def delete(id):
@@ -56,3 +62,5 @@ def delete(id):
   db.session.delete(rig)
   db.session.commit()
   return jsonify(message="Success"), 200
+
+# Associate gear here
