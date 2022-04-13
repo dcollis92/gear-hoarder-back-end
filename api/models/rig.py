@@ -10,8 +10,8 @@ class Rig(db.Model):
   profile_id = db.Column(db.Integer, db.ForeignKey('profiles.id'))
   
   guitars = db.relationship("Guitar", secondary="associations")
-  amps = db.relationship("Amp", secondary="associations")
-  pedals = db.relationship("Pedal", secondary="associations")
+  amps = db.relationship("Amp", secondary="associations", overlaps="guitars")
+  pedals = db.relationship("Pedal", secondary="associations", overlaps="amps,guitars")
 
   def __repr__(self):
     return f"Rig('{self.id}', '{self.name}'"
