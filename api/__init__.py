@@ -20,7 +20,6 @@ from api.views.guitars import guitars
 from api.views.amps import amps
 from api.views.pedals import pedals
 
-
 cors = CORS()
 migrate = Migrate() 
 list = ['GET', 'HEAD', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE', 'LINK']
