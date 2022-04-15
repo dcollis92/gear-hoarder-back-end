@@ -23,7 +23,7 @@ from api.views.pedals import pedals
 
 cors = CORS()
 migrate = Migrate() 
-list = ['GET', 'HEAD', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE', 'LINK']
+list = ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE', 'LINK']
 
 def create_app(config):
   app = Flask(__name__)

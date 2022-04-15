@@ -1,8 +1,6 @@
 from datetime import datetime
 from api.models.db import db
 
-# Add Association class here
-
 class Pedal(db.Model):
     __tablename__ = 'pedals'
     id = db.Column(db.Integer, primary_key=True)
