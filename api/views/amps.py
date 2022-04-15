@@ -11,6 +11,7 @@ amps = Blueprint('amps', 'amps')
 @login_required
 def create():
     data = request.get_json()
+    print(data)
     profile = read_token(request)
     data["profile_id"] = profile["id"]
     amp = Amp(**data)
